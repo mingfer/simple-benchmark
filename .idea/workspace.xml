@@ -4,22 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09598344-7e15-46ca-8d8a-611087dcda85" name="Changes" comment="chore - 初始化项目">
-      <change afterPath="$PROJECT_DIR$/README.adoc" afterDir="false" />
+    <list default="true" id="09598344-7e15-46ca-8d8a-611087dcda85" name="Changes" comment="feature - 计时测试器">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/Args.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/CountBenchmark.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/StepThreadBenchmark.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/annotation/CountBenchmark.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/annotation/TimingBenchmark.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/Attribute.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/Attributes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/CPURecorder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/DateTimeRecorder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/Recorder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/cn/mingfer/benchmark/BenchmarkTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/cn/mingfer/benchmark/TimingBenchmarkTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/Benchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/Benchmark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/TimingBenchmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/TimingBenchmark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/reporter/ConsoleReporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/reporter/ConsoleReporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/reporter/Reporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/reporter/Reporter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2AWaM4xUeW3fdvt7mzRj6z0XZZj" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -30,9 +56,117 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "/Users/zmfeng/workspace/simple-benchmark/src/main/java"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.mingfer.benchmark" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.mingfer.benchmark" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.BenchmarkTest.test_timing_normal">
+    <configuration name="BenchmarkTest.test_config" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="simple-benchmark" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.mingfer.benchmark.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.mingfer.benchmark" />
+      <option name="MAIN_CLASS_NAME" value="cn.mingfer.benchmark.BenchmarkTest" />
+      <option name="METHOD_NAME" value="test_config" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BenchmarkTest.test_timing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="simple-benchmark" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.mingfer.benchmark.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.mingfer.benchmark" />
+      <option name="MAIN_CLASS_NAME" value="cn.mingfer.benchmark.BenchmarkTest" />
+      <option name="METHOD_NAME" value="test_timing" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BenchmarkTest.test_timing_normal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="simple-benchmark" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.mingfer.benchmark.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.mingfer.benchmark" />
+      <option name="MAIN_CLASS_NAME" value="cn.mingfer.benchmark.BenchmarkTest" />
+      <option name="METHOD_NAME" value="test_timing_normal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimingBenchmarkTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="simple-benchmark" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.mingfer.benchmark.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.mingfer.benchmark" />
+      <option name="MAIN_CLASS_NAME" value="cn.mingfer.benchmark.TimingBenchmarkTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimingBenchmarkTest.test_warm_up" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="simple-benchmark" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cn.mingfer.benchmark.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cn.mingfer.benchmark" />
+      <option name="MAIN_CLASS_NAME" value="cn.mingfer.benchmark.TimingBenchmarkTest" />
+      <option name="METHOD_NAME" value="test_warm_up" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BenchmarkTest.test_timing_normal" />
+        <item itemvalue="JUnit.TimingBenchmarkTest.test_warm_up" />
+        <item itemvalue="JUnit.TimingBenchmarkTest.test" />
+        <item itemvalue="JUnit.BenchmarkTest.test_config" />
+        <item itemvalue="JUnit.BenchmarkTest.test_timing" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -49,7 +183,42 @@
       <option name="project" value="LOCAL" />
       <updated>1655128003680</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="chore - 添加 README">
+      <created>1655128378039</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1655128378039</updated>
+    </task>
+    <task id="LOCAL-00003" summary="chore - 添加 README">
+      <created>1655128403184</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1655128403184</updated>
+    </task>
+    <task id="LOCAL-00004" summary="chore - 添加 README">
+      <created>1655128623181</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1655128623181</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feature - 测试内容接口">
+      <created>1655163697600</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1655163697600</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feature - 计时测试器">
+      <created>1655163844368</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1655163844369</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -65,6 +234,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="chore - 初始化项目" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore - 初始化项目" />
+    <MESSAGE value="chore - 添加 README" />
+    <MESSAGE value="feature - 测试内容接口" />
+    <MESSAGE value="feature - 计时测试器" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature - 计时测试器" />
   </component>
 </project>
