@@ -2,6 +2,7 @@ package cn.mingfer.benchmark.reporter;
 
 import cn.mingfer.benchmark.Benchmark;
 
+import java.text.DecimalFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,18 +19,18 @@ public class ConsoleReporter extends Reporter {
     private ScheduledFuture<?> future;
     private boolean statistics = false;
 
-    public ConsoleReporter setDateTimeFormatter(DateTimeFormatter dateTimeFormatter) {
+    public ConsoleReporter datetimeFormatter(DateTimeFormatter dateTimeFormatter) {
         this.dateTimeFormatter = Objects.requireNonNull(dateTimeFormatter);
         return this;
     }
 
-    public ConsoleReporter setFrequency(Duration frequency) {
+    public ConsoleReporter frequency(Duration frequency) {
         this.frequency = Objects.requireNonNull(frequency);
         return this;
     }
 
     @Override
-    public void reportStart(long timestamp, Benchmark benchmark) {
+    public void reportStart(long timestamp, Benchmark<?> benchmark) {
         super.reportStart(timestamp, benchmark);
 
         final Thread thread = new Thread(() -> statistics(benchmark));
@@ -63,24 +64,28 @@ public class ConsoleReporter extends Reporter {
     }
 
     @Override
-    public void statistics(Benchmark benchmark) {
+    public void statistics(Benchmark<?> benchmark) {
         if (future != null) {
             future.cancel(true);
         }
         if (!statistics) {
             final long duration = System.currentTimeMillis() - startTimestamp;
+            try {
+                Thread.sleep(frequency.toMillis() + 10);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             final long success = successCounts.get();
             final long failed = failedCounts.get();
-            String result = "Test Result\n" +
-                    (benchmark.getName().isEmpty() ? "" : (benchmark.getName() + "\n")) +
-                    (benchmark.getDesc().isEmpty() ? "" : (benchmark.getDesc() + "\n")) +
-                    "           Threads: " + benchmark.getThreads() + "\n" +
+            final double rtt = success == 0 ? 0 : timeConsuming.get() / 1000.00 / success;
+            String result = "              Name: " + benchmark.name() + "\n" +
+                    "           Threads: " + benchmark.threads() + "\n" +
                     "          Duration: " + duration / 1000 + "s\n" +
                     "       Total Count: " + (success + failed) + "\n" +
                     "     Success Count: " + success + "\n" +
                     "      Failed Count: " + failed + "\n" +
-                    "       Average TPS: " + success * 1000 / duration + "\n" +
-                    "       Average RTT: " + timeConsuming.get() / 1000.00 / success + "ms\n" +
+                    "       Average TPS: " + (duration == 0 ? 0 : success * 1000 / duration) + "\n" +
+                    "       Average RTT: " + new DecimalFormat("0.00").format(rtt) + "ms\n" +
                     "Max Time Consuming: " + maxTimeConsuming / 1000.00 + "ms\n" +
                     "Min Time Consuming: " + minTimeConsuming / 1000.00 + "ms\n" +
                     "Test stopped......";

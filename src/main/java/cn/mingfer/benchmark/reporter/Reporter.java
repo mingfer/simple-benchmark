@@ -35,6 +35,11 @@ public abstract class Reporter {
     protected volatile long minTimeConsuming = Integer.MAX_VALUE;
     protected volatile long startTimestamp = 0;
 
+    /**
+     * 获取一个打印信息到控制台的报告器
+     *
+     * @return {@link ConsoleReporter}
+     */
     public static Reporter console() {
         return ConsoleReporter.CONSOLE;
     }
@@ -58,10 +63,15 @@ public abstract class Reporter {
         failedCounts.incrementAndGet();
     }
 
-    public void reportStart(long timestamp, Benchmark benchmark) {
+    public void reportStart(long timestamp, Benchmark<?> benchmark) {
         this.startTimestamp = timestamp;
+        this.successCounts.set(0);
+        this.failedCounts.set(0);
+        this.timeConsuming.set(0);
+        this.minTimeConsuming = Integer.MAX_VALUE;
+        this.maxTimeConsuming = 0;
     }
 
-    public abstract void statistics(Benchmark benchmark);
+    public abstract void statistics(Benchmark<?> benchmark);
 
 }
