@@ -16,6 +16,14 @@
     <junit.platform.version>1.8.2</junit.platform.version>
   </properties>
 
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub mingfer Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/mingfer/simple-benchmark</url>
+    </repository>
+  </distributionManagement>
+
   <developers>
     <developer>
       <id>mingfer</id>
