@@ -28,9 +28,24 @@
       <id>mingfer</id>
       <name>Zhang Mingfer</name>
       <email>mingfer.cn@gmail.com</email>
-      <url>https://mingfer.cn</url>
+      <url>https://github.com/mingfer</url>
     </developer>
   </developers>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://opensource.org/licenses/Apache-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <tag>master</tag>
+    <url>https://github.com/mingfer/simple-benchmark</url>
+    <connection>scm:git:git@github.com:mingfer/simple-benchmark.git</connection>
+    <developerConnection>scm:git:git@github.com:mingfer/simple-benchmark.git</developerConnection>
+  </scm>
 
   <dependencies>
     <dependency>
