@@ -1,5 +1,6 @@
-= Simple-Benchmark
+= Simple Benchmark
 
-simple-benchmark 是一个简单的 Java 压测 SDK，主要用于开发环境下对方法进行短时间（如 1 到 15 分钟以内）的压测并得到一个简单的结果报告，以便于快速的评估方法的性能指标。如果需要更加详尽和专业的性能数据，请使用 https://jmeter.apache.org/[JMeter] 工具。
+Simple Benchmark 是一个简单的 Java 方法性能测试 SDK。主要用于开发环境下，对方法进行短时间（如 1 到 15
+分钟以内）的性能测试，并得到一个简单的性能报告，以便于快速的评估方法的实际性能指标。如果需要更加详尽和专业的性能数据，请使用 https://jmeter.apache.org/[JMeter] 工具。
 
 

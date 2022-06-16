@@ -6,7 +6,14 @@
 
   <groupId>cn.mingfer</groupId>
   <artifactId>simple-benchmark</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Simple Benchmark</name>
+  <url>https://github.com/mingfer/simple-benchmark</url>
+  <description>simple-benchmark 是一个简单的 Java 方法性能测试 SDK。主要用于开发环境下，对方法进行短时间（如 1 到 15
+    分钟以内）的性能测试，并得到一个简单的性能报告，以便于快速的评估方法的实际性能指标。
+  </description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -16,10 +23,15 @@
   </properties>
 
   <distributionManagement>
+    <snapshotRepository>
+      <id>oss</id>
+      <name>OSS Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
     <repository>
-      <id>github</id>
-      <name>GitHub mingfer Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/mingfer/simple-benchmark</url>
+      <id>oss</id>
+      <name>OSS Staging Repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
 
@@ -104,6 +116,21 @@
             <phase>package</phase>
             <goals>
               <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
             </goals>
           </execution>
         </executions>

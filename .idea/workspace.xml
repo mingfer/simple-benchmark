@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09598344-7e15-46ca-8d8a-611087dcda85" name="Changes" comment="feature - 计数压测器">
+    <list default="true" id="09598344-7e15-46ca-8d8a-611087dcda85" name="Changes" comment="chore - license and scm">
       <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/junit5/BenchmarkExtension.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/junit5/BenchmarkOfCount.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/junit5/BenchmarkOfTime.java" afterDir="false" />
@@ -15,6 +15,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/Recorder.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/test/java/cn/mingfer/benchmark/junit5/BenchmarkExtensionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.adoc" beforeDir="false" afterPath="$PROJECT_DIR$/README.adoc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -257,7 +258,21 @@
       <option name="project" value="LOCAL" />
       <updated>1655297877924</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="chore - compiler source-jar javadoc-jar config">
+      <created>1655383023022</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1655383023022</updated>
+    </task>
+    <task id="LOCAL-00012" summary="chore - license and scm">
+      <created>1655383197271</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1655383197271</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,6 +294,8 @@
     <MESSAGE value="chore - 添加测试依赖" />
     <MESSAGE value="chore - 添加 GitHub Packages 配置" />
     <MESSAGE value="feature - 计数压测器" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature - 计数压测器" />
+    <MESSAGE value="chore - compiler source-jar javadoc-jar config" />
+    <MESSAGE value="chore - license and scm" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore - license and scm" />
   </component>
 </project>
