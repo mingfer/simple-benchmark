@@ -4,18 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="09598344-7e15-46ca-8d8a-611087dcda85" name="Changes" comment="chore - 添加 GitHub Packages 配置">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/CountBenchmark.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/StepThreadBenchmark.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/junit5/CountBenchmark.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/junit5/TimingBenchmark.java" afterDir="false" />
+    <list default="true" id="09598344-7e15-46ca-8d8a-611087dcda85" name="Changes" comment="feature - 计数压测器">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/junit5/BenchmarkExtension.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/junit5/BenchmarkOfCount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/junit5/BenchmarkOfTime.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/Attribute.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/Attributes.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/CPURecorder.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/DateTimeRecorder.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/cn/mingfer/benchmark/recorder/Recorder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/cn/mingfer/benchmark/CountBenchmarkTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/cn/mingfer/benchmark/junit5/BenchmarkExtensionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +25,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Class" />
         <option value="JUnit5 Test Class" />
       </list>
     </option>
@@ -79,6 +80,7 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="cn.mingfer.benchmark.junit5" />
       <recent name="cn.mingfer.benchmark" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -248,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655297352330</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feature - 计数压测器">
+      <created>1655297877924</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1655297877924</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -269,6 +278,7 @@
     <MESSAGE value="feature - 计时测试器" />
     <MESSAGE value="chore - 添加测试依赖" />
     <MESSAGE value="chore - 添加 GitHub Packages 配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore - 添加 GitHub Packages 配置" />
+    <MESSAGE value="feature - 计数压测器" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature - 计数压测器" />
   </component>
 </project>
