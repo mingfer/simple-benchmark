@@ -18,7 +18,7 @@ public class CountBenchmark extends Benchmark<CountBenchmark> {
      * @return 设置预热次数后的 {@link CountDownLatch}
      */
     public CountBenchmark warmUp(int warmUp) {
-        this.warmUp = Args.positive(warmUp, "warmUp");
+        this.warmUp = Args.notNegative(warmUp, "warmUp");
         return this;
     }
 

@@ -20,15 +20,27 @@ public abstract class Benchmark<T> {
     private String name = "";
 
     /**
-     * 创建一个计时的性能测试示例
+     * 创建一个计时的性能测试实例
      *
-     * @param duration   压测的时间段，不可为 null
-     * @param threads    压测线程数，必须为正整数
-     * @param executable 压测内容，不可为 null
+     * @param duration   测试的时间段，不可为 null
+     * @param threads    测试线程数，必须为正整数
+     * @param executable 测试内容，不可为 null
      * @return {@link TimingBenchmark} 对象
      */
     public static TimingBenchmark ofTiming(Duration duration, int threads, Executable executable) {
         return new TimingBenchmark(duration, threads, executable);
+    }
+
+    /**
+     * 创建一个计数的性能测试实例
+     *
+     * @param count      测试次数
+     * @param threads    测试线程数
+     * @param executable 测试内容，不可为 null
+     * @return {@link CountBenchmark} 对象
+     */
+    public static CountBenchmark ofCount(int count, int threads, Executable executable) {
+        return new CountBenchmark(count, threads, executable);
     }
 
     /**

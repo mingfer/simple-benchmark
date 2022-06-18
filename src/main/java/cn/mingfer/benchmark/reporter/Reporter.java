@@ -1,11 +1,7 @@
 package cn.mingfer.benchmark.reporter;
 
 import cn.mingfer.benchmark.Benchmark;
-import cn.mingfer.benchmark.recorder.Recorder;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -13,7 +9,6 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public abstract class Reporter {
 
-    protected final Set<Recorder> recorders = new HashSet<>();
     protected final AtomicLong successCounts = new AtomicLong(0);
 
     /**
@@ -44,10 +39,6 @@ public abstract class Reporter {
         return ConsoleReporter.CONSOLE;
     }
 
-    public void addRecorder(Recorder recorder) {
-        recorders.add(Objects.requireNonNull(recorder));
-    }
-
     public void reportSuccess(long timeout) {
         successCounts.incrementAndGet();
         timeConsuming.addAndGet(timeout / 1000L);
@@ -61,6 +52,7 @@ public abstract class Reporter {
 
     public void reportFailed(Throwable throwable) {
         failedCounts.incrementAndGet();
+        throwable.printStackTrace();
     }
 
     public void reportStart(long timestamp, Benchmark<?> benchmark) {

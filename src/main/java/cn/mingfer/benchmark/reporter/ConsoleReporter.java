@@ -80,7 +80,7 @@ public class ConsoleReporter extends Reporter {
             final double rtt = success == 0 ? 0 : timeConsuming.get() / 1000.00 / success;
             String result = "              Name: " + benchmark.name() + "\n" +
                     "           Threads: " + benchmark.threads() + "\n" +
-                    "          Duration: " + duration / 1000 + "s\n" +
+                    "          Duration: " + duration / 1000.00 + "s\n" +
                     "       Total Count: " + (success + failed) + "\n" +
                     "     Success Count: " + success + "\n" +
                     "      Failed Count: " + failed + "\n" +
