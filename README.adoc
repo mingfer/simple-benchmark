@@ -29,6 +29,33 @@ include::pom.xml[tag=id]
 
 == 使用
 
+Simple Benchmark 实现了一个计数的测试器和一个计时的测试器，默认情况下，测试结果示例如下：
+
+[source,text]
+----
+20:01:46 success: 000000041  failed: 000000  TPS: 000041 RTT: 210.402ms
+20:01:47 success: 000000108  failed: 000000  TPS: 000067 RTT: 160.257ms
+20:01:48 success: 000000179  failed: 000000  TPS: 000071 RTT: 134.440ms
+20:01:49 success: 000000249  failed: 000000  TPS: 000070 RTT: 147.903ms
+20:01:50 success: 000000315  failed: 000000  TPS: 000066 RTT: 153.323ms
+20:01:51 success: 000000390  failed: 000000  TPS: 000075 RTT: 131.452ms
+20:01:52 success: 000000462  failed: 000000  TPS: 000072 RTT: 145.598ms
+20:01:53 success: 000000533  failed: 000000  TPS: 000071 RTT: 135.035ms
+20:01:54 success: 000000609  failed: 000000  TPS: 000076 RTT: 133.958ms
+20:01:55 success: 000000680  failed: 000000  TPS: 000071 RTT: 147.998ms
+              Name: 计时性能测试
+           Threads: 10
+          Duration: 10.093s
+       Total Count: 682
+     Success Count: 682
+      Failed Count: 0
+       Average TPS: 67
+       Average RTT: 147.04ms
+Max Time Consuming: 602.487ms
+Min Time Consuming: 29.996ms
+Test stopped......
+----
+
 === 计时性能测试
 
 测试方法在指定线程数下一段时间内的性能指标。
