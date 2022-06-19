@@ -10,9 +10,13 @@ class CountBenchmarkTest {
     @Test
     @DisplayName("正常用例：最佳实践")
     public void test() {
-        new CountBenchmark(100, 10, () -> KeyPairGenerator.getInstance("RSA").generateKeyPair())
-                .warmUp(1)
+        // tag::doc[]
+        Benchmark.ofCount(
+                        100, // <1>
+                        10, // <2>
+                        () -> KeyPairGenerator.getInstance("RSA").generateKeyPair()) // <3>
                 .benchmark();
+        // end::doc[]
     }
 
 }

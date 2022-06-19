@@ -1,6 +1,105 @@
 = Simple Benchmark
+:toc:
+:toclevels: 4
+:toc-title: 目录
+
+image:https://img.shields.io/badge/License-Apache_2.0-blue.svg[]
+image:https://img.shields.io/badge/java-1.8%2B-yellow[]
+image:https://maven-badges.herokuapp.com/maven-central/cn.mingfer/simple-benchmark/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/cn.mingfer/simple-benchmark/]
 
 Simple Benchmark 是一个简单的 Java 方法性能测试 SDK。主要用于开发环境下，对方法进行短时间（如 1 到 15
 分钟以内）的性能测试，并得到一个简单的性能报告，以便于快速的评估方法的实际性能指标。如果需要更加详尽和专业的性能数据，请使用 https://jmeter.apache.org/[JMeter] 工具。
 
+== 集成
+
+=== JDK 版本
+**Simple Benchmark 要求 1.8 或以上的 JDK 版本。**
+
+=== Maven 依赖
+
+要在基于 Maven 的项目上使用，请使用以下依赖项：
+
+[source, xml]
+----
+<dependency>
+include::pom.xml[tag=id]
+  <scope>test</scope>
+</dependency>
+----
+
+== 使用
+
+=== 计时性能测试
+
+测试方法在指定线程数下一段时间内的性能指标。
+
+[source,java]
+----
+include::src/test/java/cn/mingfer/benchmark/TimingBenchmarkTest.java[tag=doc, indent=0]
+----
+
+<1> 设置测试的时间长度
+<2> 设置测试的线程数
+<3> 设置测试的内容
+
+=== 计数性能测试
+
+设置固定的测试次数，用指定的线程数测试方法。
+
+[source,java]
+----
+include::src/test/java/cn/mingfer/benchmark/CountBenchmarkTest.java[tag=doc, indent=0]
+----
+
+<1> 设置测试的总次数
+<2> 设置测试的线程数
+<3> 设置测试的内容
+
+=== 和 JUnit5 集成
+
+在 JUnit5 测试框架下，可以通过注解 `BenchmarkCount` 和 `BenchmarkTiming` 对方法进行测试。
+
+[source,java]
+.BenchmarkTiming 注解示例
+----
+include::src/test/java/cn/mingfer/benchmark/junit5/BenchmarkTimingExtensionTest.java[tag=doc, indent=0]
+----
+[source,java]
+.BenchmarkCount 注解示例
+----
+include::src/test/java/cn/mingfer/benchmark/junit5/BenchmarkCountExtensionTest.java[tag=doc, indent=0]
+----
+
+[cols="1, 3a"]
+.注解说明
+|===
+|属性
+|说明
+
+2+|`@BenchmarkTiming`
+
+|threads
+|测试线程数，默认为 1 个线程。
+
+|duration
+|测试时长，默认值为 1，时间单位由 `unit` 指定。
+
+|unit
+|测试时长的单位，默认为 `TimeUnit.SECONDS`
+
+|warmUpSeconds
+|测试预热时间，单位为秒，默认为 0 秒，即不预热。
+
+2+|`@BenchmarkCount`
+
+|threads
+|测试线程数，默认为 1 个线程。
+
+|count
+|测试的总次数，默认为 1 次。
+
+|warmUp
+|测试的预热次数，默认为 0 次，即不预热。
+
+|===
 

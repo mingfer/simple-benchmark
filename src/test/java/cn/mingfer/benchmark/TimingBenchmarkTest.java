@@ -7,6 +7,17 @@ import java.security.KeyPairGenerator;
 import java.time.Duration;
 
 class TimingBenchmarkTest {
+    @Test
+    @DisplayName("正常用例：最佳实践")
+    public void test() {
+        // tag::doc[]
+        Benchmark.ofTiming(
+                        Duration.ofSeconds(10), // <1>
+                        10, // <2>
+                        () -> KeyPairGenerator.getInstance("RSA").generateKeyPair()) // <3>
+                .benchmark();
+        // end::doc[]
+    }
 
     @Test
     @DisplayName("正常用例：预热场景")
