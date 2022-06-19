@@ -24,7 +24,7 @@ Simple Benchmark 是一个简单的 Java 方法性能测试 SDK。主要用于�
 <dependency>
   <groupId>cn.mingfer</groupId>
   <artifactId>simple-benchmark</artifactId>
-  <version>${least-version}</version>
+  <version>${latest-version}</version>
   <scope>test</scope>
 </dependency>
 ----
