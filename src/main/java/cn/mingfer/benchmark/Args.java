@@ -63,6 +63,8 @@ public class Args {
 
     /**
      * Returns true if the parameter is null or of zero length
+     * @param s 字符串
+     * @return true 字符串为 null 或空值
      */
     public static boolean isEmpty(final CharSequence s) {
         if (s == null) {
@@ -73,6 +75,8 @@ public class Args {
 
     /**
      * Returns true if the parameter is null or contains only whitespace
+     * @param s 字符串
+     * @return true 字符串为 null，空值或者全空格
      */
     public static boolean isBlank(final CharSequence s) {
         if (s == null) {
