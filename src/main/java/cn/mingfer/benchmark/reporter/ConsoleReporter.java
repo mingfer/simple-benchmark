@@ -2,32 +2,15 @@ package cn.mingfer.benchmark.reporter;
 
 import cn.mingfer.benchmark.Benchmark;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class ConsoleReporter extends Reporter {
     protected final static Reporter CONSOLE = new ConsoleReporter();
-    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-    private Duration frequency = Duration.ofSeconds(1);
-    private ScheduledFuture<?> future;
-    private boolean statistics = false;
-
-    public ConsoleReporter datetimeFormatter(DateTimeFormatter dateTimeFormatter) {
-        this.dateTimeFormatter = Objects.requireNonNull(dateTimeFormatter);
-        return this;
-    }
-
-    public ConsoleReporter frequency(Duration frequency) {
-        this.frequency = Objects.requireNonNull(frequency);
-        return this;
-    }
 
     @Override
     public void reportStart(long timestamp, Benchmark<?> benchmark) {
@@ -35,7 +18,7 @@ public class ConsoleReporter extends Reporter {
 
         final Thread thread = new Thread(() -> statistics(benchmark));
         Runtime.getRuntime().addShutdownHook(thread);
-        final String format = "%s success: %09d  failed: %06d  TPS: %06d RTT: %03.03fms%n";
+        final String format = "%s success: %09d  failed: %06d  TPS: %06d RTT: %03.03fms";
         final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1, r -> {
             Thread t = new Thread(r, "simple-benchmark-report-thread");
             t.setDaemon(true);
@@ -55,7 +38,8 @@ public class ConsoleReporter extends Reporter {
                     float rtt = (float) (tps == 0 ? 0.00 : (timeout - lastTimeConsuming) / 1000.00 / tps);
                     lastCounts = success;
                     lastTimeConsuming = timeout;
-                    System.out.printf(format, dateTimeFormatter.format(LocalDateTime.now()), success, failed, tps, rtt);
+                    println(String.format(format,
+                            dateTimeFormatter.format(LocalDateTime.now()), success, failed, tps, rtt));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -89,8 +73,17 @@ public class ConsoleReporter extends Reporter {
                     "Max Time Consuming: " + maxTimeConsuming / 1000.00 + "ms\n" +
                     "Min Time Consuming: " + minTimeConsuming / 1000.00 + "ms\n" +
                     "Test stopped......";
-            System.out.println(result);
+            println(result);
             statistics = true;
+        }
+    }
+
+    void println(String result) {
+        try {
+            out.write(result.getBytes());
+            out.write('\n');
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

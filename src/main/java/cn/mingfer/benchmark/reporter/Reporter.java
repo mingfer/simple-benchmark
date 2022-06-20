@@ -1,7 +1,13 @@
 package cn.mingfer.benchmark.reporter;
 
+import cn.mingfer.benchmark.Args;
 import cn.mingfer.benchmark.Benchmark;
 
+import java.io.OutputStream;
+import java.time.Duration;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -29,6 +35,27 @@ public abstract class Reporter {
      */
     protected volatile long minTimeConsuming = Integer.MAX_VALUE;
     protected volatile long startTimestamp = 0;
+
+    protected OutputStream out = System.out;
+    protected DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    protected Duration frequency = Duration.ofSeconds(1);
+    protected ScheduledFuture<?> future;
+    protected boolean statistics = false;
+
+    public Reporter resultOutput(OutputStream stream) {
+        this.out = Args.notNull(stream, "stream");
+        return this;
+    }
+
+    public Reporter datetimeFormatter(DateTimeFormatter dateTimeFormatter) {
+        this.dateTimeFormatter = Objects.requireNonNull(dateTimeFormatter);
+        return this;
+    }
+
+    public Reporter frequency(Duration frequency) {
+        this.frequency = Objects.requireNonNull(frequency);
+        return this;
+    }
 
     /**
      * 获取一个打印信息到控制台的报告器
@@ -62,8 +89,12 @@ public abstract class Reporter {
         this.timeConsuming.set(0);
         this.minTimeConsuming = Integer.MAX_VALUE;
         this.maxTimeConsuming = 0;
+        final Thread thread = new Thread(() -> statistics(benchmark));
+        Runtime.getRuntime().addShutdownHook(thread);
     }
 
     public abstract void statistics(Benchmark<?> benchmark);
+
+
 
 }
