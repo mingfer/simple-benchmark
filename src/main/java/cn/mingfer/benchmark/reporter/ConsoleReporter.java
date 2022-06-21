@@ -10,7 +10,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class ConsoleReporter extends Reporter {
-    protected final static Reporter CONSOLE = new ConsoleReporter();
 
     @Override
     public void reportStart(long timestamp, Benchmark<?> benchmark) {
@@ -52,7 +51,7 @@ public class ConsoleReporter extends Reporter {
         if (future != null) {
             future.cancel(true);
         }
-        if (!statistics) {
+        if (statistics.compareAndSet(false, true)) {
             final long duration = System.currentTimeMillis() - startTimestamp;
             try {
                 Thread.sleep(frequency.toMillis() + 10);
@@ -74,7 +73,6 @@ public class ConsoleReporter extends Reporter {
                     "Min Time Consuming: " + minTimeConsuming / 1000.00 + "ms\n" +
                     "Test stopped......";
             println(result);
-            statistics = true;
         }
     }
 

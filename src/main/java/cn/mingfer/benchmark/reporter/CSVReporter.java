@@ -10,7 +10,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class CSVReporter extends Reporter {
-    protected final static Reporter CSV = new CSVReporter();
 
     @Override
     public void reportStart(long timestamp, Benchmark<?> benchmark) {
@@ -56,7 +55,7 @@ public class CSVReporter extends Reporter {
         if (future != null) {
             future.cancel(true);
         }
-        if (!statistics) {
+        if (statistics.compareAndSet(false, true)) {
             final long duration = System.currentTimeMillis() - startTimestamp;
             try {
                 Thread.sleep(frequency.toMillis() + 10);
@@ -89,7 +88,6 @@ public class CSVReporter extends Reporter {
                 } catch (IOException ignore) {
                 }
             }
-            statistics = true;
         }
     }
 

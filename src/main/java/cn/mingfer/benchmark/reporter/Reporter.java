@@ -3,11 +3,15 @@ package cn.mingfer.benchmark.reporter;
 import cn.mingfer.benchmark.Args;
 import cn.mingfer.benchmark.Benchmark;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -40,30 +44,52 @@ public abstract class Reporter {
     protected DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
     protected Duration frequency = Duration.ofSeconds(1);
     protected ScheduledFuture<?> future;
-    protected boolean statistics = false;
+    protected AtomicBoolean statistics = new AtomicBoolean(false);
 
+    /**
+     * @param file 设置记录报告结果的文件
+     * @return 报告对象
+     */
+    public Reporter resultOutput(File file) {
+        Args.notNull(file, "file");
+        File parentFile = file.getAbsoluteFile().getParentFile();
+        if (!parentFile.exists() || !parentFile.isDirectory()) {
+            boolean mkdirs = parentFile.mkdirs();
+            Args.check(mkdirs, "Create directory " + parentFile + " failed");
+        }
+        try {
+            this.out = Files.newOutputStream(file.toPath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return this;
+    }
+
+    /**
+     * @param stream 设置记录报告结果的输出流
+     * @return 报告对象
+     */
     public Reporter resultOutput(OutputStream stream) {
         this.out = Args.notNull(stream, "stream");
         return this;
     }
 
+    /**
+     * @param dateTimeFormatter 设置时间格式，默认是 HH:mm:ss
+     * @return 报告对象
+     */
     public Reporter datetimeFormatter(DateTimeFormatter dateTimeFormatter) {
         this.dateTimeFormatter = Objects.requireNonNull(dateTimeFormatter);
         return this;
     }
 
+    /**
+     * @param frequency 设置报告频率，默认为 1 秒钟
+     * @return 报告对象
+     */
     public Reporter frequency(Duration frequency) {
         this.frequency = Objects.requireNonNull(frequency);
         return this;
-    }
-
-    /**
-     * 获取一个打印信息到控制台的报告器
-     *
-     * @return {@link ConsoleReporter}
-     */
-    public static Reporter console() {
-        return ConsoleReporter.CONSOLE;
     }
 
     public void reportSuccess(long timeout) {
@@ -94,7 +120,6 @@ public abstract class Reporter {
     }
 
     public abstract void statistics(Benchmark<?> benchmark);
-
 
 
 }

@@ -1,5 +1,6 @@
 package cn.mingfer.benchmark;
 
+import cn.mingfer.benchmark.reporter.ConsoleReporter;
 import cn.mingfer.benchmark.reporter.Reporter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ class BenchmarkTest {
         Benchmark.ofTiming(Duration.ofSeconds(5), 1,
                         () -> KeyPairGenerator.getInstance("RSA").generateKeyPair())
                 .name("配置项测试")
-                .addReporter(Reporter.console())
+                .addReporter(new ConsoleReporter())
                 .benchmark();
     }
 
