@@ -5,6 +5,7 @@ import cn.mingfer.benchmark.Benchmark;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -66,6 +67,7 @@ public class CSVReporter extends Reporter {
             final long failed = failedCounts.get();
             final double rtt = success == 0 ? 0 : timeConsuming.get() / 1000.00 / success;
             String result = "Name, " + benchmark.name() + "\n" +
+                    "Timestamp, " + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now()) + "\n" +
                     "Threads, " + benchmark.threads() + "\n" +
                     "Duration, " + duration / 1000.00 + "s\n" +
                     "Total Count, " + (success + failed) + "\n" +
