@@ -2,10 +2,12 @@ package cn.mingfer.benchmark.reporter;
 
 import cn.mingfer.benchmark.Args;
 import cn.mingfer.benchmark.Benchmark;
+import com.sun.management.OperatingSystemMXBean;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.management.ManagementFactory;
 import java.nio.file.Files;
 import java.time.Duration;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +20,10 @@ import java.util.concurrent.atomic.AtomicLong;
  * 将测试数据形成报告
  */
 public abstract class Reporter {
+
+    public enum Type {
+        CONSOLE, CSV
+    }
 
     protected final AtomicLong successCounts = new AtomicLong(0);
 
@@ -45,6 +51,8 @@ public abstract class Reporter {
     protected Duration frequency = Duration.ofSeconds(1);
     protected ScheduledFuture<?> future;
     protected AtomicBoolean statistics = new AtomicBoolean(false);
+
+    protected OperatingSystemMXBean bean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 
     /**
      * @param file 设置记录报告结果的文件
@@ -122,4 +130,23 @@ public abstract class Reporter {
     public abstract void statistics(Benchmark<?> benchmark);
 
 
+    public float cpu() {
+        return (float) (bean.getProcessCpuLoad() * 100.0f);
+    }
+
+    public String memory() {
+        long total = Runtime.getRuntime().totalMemory();
+        long free = Runtime.getRuntime().freeMemory();
+        long used = total - free;
+
+        if (used < 1024) {
+            return String.format("%.03dB", used);
+        } else if (used / 1024 < 1024) {
+            return String.format("%.03fKB", used / 1024.0);
+        } else if (used / 1024 / 1024 < 1024) {
+            return String.format("%.03fMB", used / 1024.0 / 1024.0);
+        } else {
+            return String.format("%.03fGB", used / 1024.0 / 1024.0 / 1024.0);
+        }
+    }
 }

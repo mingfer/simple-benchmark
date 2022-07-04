@@ -17,7 +17,7 @@ public class CSVReporter extends Reporter {
         super.reportStart(timestamp, benchmark);
         try {
             out.write(new byte[]{(byte) 0xEF, (byte) 0xBB, (byte) 0xBF}); // UTF-BOM
-            out.write("Time, Success, failed, TPS, RTT\n".getBytes());
+            out.write("Time, Success, failed, TPS, RTT, CPU, Memory\n".getBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -42,7 +42,7 @@ public class CSVReporter extends Reporter {
                     lastCounts = success;
                     lastTimeConsuming = timeout;
                     out.write((dateTimeFormatter.format(LocalDateTime.now()) + ", " +
-                            success + ", " + failed + ", " + tps + ", " + rtt).getBytes());
+                            success + ", " + failed + ", " + tps + ", " + rtt + ", " + cpu() + ", " + memory()).getBytes());
                     out.write('\n');
                 } catch (Exception e) {
                     throw new RuntimeException(e);

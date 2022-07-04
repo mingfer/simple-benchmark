@@ -18,7 +18,7 @@ public class ConsoleReporter extends Reporter {
 
         final Thread thread = new Thread(() -> statistics(benchmark));
         Runtime.getRuntime().addShutdownHook(thread);
-        final String format = "%s success: %09d  failed: %06d  TPS: %06d RTT: %03.03fms";
+        final String format = "%s success: %09d  failed: %06d  TPS: %06d RTT: %03.03fms CPU: %02.02f%% MEM: %s";
         final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1, r -> {
             Thread t = new Thread(r, "simple-benchmark-report-thread");
             t.setDaemon(true);
@@ -39,7 +39,7 @@ public class ConsoleReporter extends Reporter {
                     lastCounts = success;
                     lastTimeConsuming = timeout;
                     println(String.format(format,
-                            dateTimeFormatter.format(LocalDateTime.now()), success, failed, tps, rtt));
+                            dateTimeFormatter.format(LocalDateTime.now()), success, failed, tps, rtt, cpu(), memory()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -62,8 +62,9 @@ public class ConsoleReporter extends Reporter {
             final long success = successCounts.get();
             final long failed = failedCounts.get();
             final double rtt = success == 0 ? 0 : timeConsuming.get() / 1000.00 / success;
+            String timestamp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now());
             String result = "              Name: " + benchmark.name() + "\n" +
-                    "         Timestamp: " + DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(LocalDateTime.now()) +
+                    "         Timestamp: " + timestamp + "\n" +
                     "           Threads: " + benchmark.threads() + "\n" +
                     "          Duration: " + duration / 1000.00 + "s\n" +
                     "       Total Count: " + (success + failed) + "\n" +
